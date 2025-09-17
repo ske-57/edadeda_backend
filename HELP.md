@@ -24,3 +24,25 @@ While most of the inheritance is fine, it also inherits unwanted elements like `
 To prevent this, the project POM contains empty overrides for these elements.
 If you manually switch to a different parent and actually want the inheritance, you need to remove those overrides.
 
+### Maven Commands
+
+```bash
+mvn clean
+```
+Purpose: Deletes the target directory where compiled files, JAR/WAR files, and temporary build data are stored.
+
+Use case: Run before building to remove old artifacts.
+
+```bash
+mvn package
+```
+Purpose: Compiles the project, runs tests, and packages the project into a distributable format (JAR, WAR) in the target directory.
+
+Use case: When you want to produce a file ready for deployment or execution.
+
+```bash
+mvn install
+```
+Purpose: Does everything package does, plus installs the artifact into the local Maven repository (~/.m2/repository).
+
+Use case: If other projects on your machine need to use this artifact as a dependency.
