@@ -1,0 +1,43 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGINT,
+  name VARCHAR(64) NOT NULL,
+  is_seller BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS items;
+
+CREATE TABLE IF NOT EXISTS items (
+  id BIGSERIAL,
+  title VARCHAR(64) NOT NULL,
+  description TEXT NOT NULL,
+  price BIGINT NOT NULL,
+  location VARCHAR(128),
+  status VARCHAR(32) DEFAULT 'AVAILABLE',
+  auto_report_link VARCHAR(256),
+  seller_id BIGINT NOT NULL REFERENCES users (id),
+  image_path VARCHAR(256),
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGSERIAL,
+  item_id BIGINT NOT NULL REFERENCES items (id),
+  buyer_id BIGINT REFERENCES users (id),
+  price BIGINT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS cart;
+
+CREATE TABLE IF NOT EXISTS cart (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users (id),
+  item_id BIGINT NOT NULL REFERENCES items (id),
+  quantity INT NOT NULL DEFAULT 1,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+)

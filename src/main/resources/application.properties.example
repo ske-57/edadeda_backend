@@ -1,0 +1,14 @@
+spring.application.name=application_name
+
+# DATASOURCE
+spring.datasource.url=jdbc:postgresql://localhost:5432/database_name
+spring.datasource.username=username
+spring.datasource.password=password
+
+# JPA
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+# SERVER
+server.port=8089
