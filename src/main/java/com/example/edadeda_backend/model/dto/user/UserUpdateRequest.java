@@ -1,7 +1,9 @@
 package com.example.edadeda_backend.model.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
+@Getter
 public class UserUpdateRequest {
 
     private String name;
@@ -17,11 +19,4 @@ public class UserUpdateRequest {
         this.isSeller = isSeller;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Boolean getIsSeller() {
-        return isSeller;
-    }
 }

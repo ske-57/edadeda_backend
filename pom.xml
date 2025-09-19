@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>edadeda_backend</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-beta</version>
 	<name>edadeda_backend</name>
 	<description>Java Backend for Edadeda tg mini app</description>
 	<url/>

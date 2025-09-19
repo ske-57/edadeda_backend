@@ -1,5 +1,8 @@
 package com.example.edadeda_backend.model.dto.user;
 
+import lombok.Getter;
+
+@Getter
 public class UserResponse {
 
     private Long id;
@@ -17,15 +20,4 @@ public class UserResponse {
         this.isSeller = isSeller;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Boolean getIsSeller() {
-        return isSeller;
-    }
 }

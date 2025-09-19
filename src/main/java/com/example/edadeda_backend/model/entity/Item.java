@@ -48,9 +48,3 @@ public class Item {
         return id;
     }
 }
-
-enum EnumItemStatus {
-    AVAILABLE,
-    RESERVED,
-    CLOSED
-}
