@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         User u = new User();
         u.setId((long) req.getName().hashCode());
         u.setName(req.getName());
-        u.setIsSeller(req.getSeller());
+        u.setIsSeller(req.getIsSeller());
         return toResponse(userRepository.save(u));
     }
 
