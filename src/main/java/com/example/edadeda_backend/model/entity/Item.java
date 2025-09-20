@@ -38,7 +38,7 @@ public class Item {
     @Getter @Setter
     private String autoReportLink;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id", nullable = false)
     @Getter @Setter
     private User seller;

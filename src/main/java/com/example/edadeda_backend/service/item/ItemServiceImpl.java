@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ItemServiceImpl implements  ItemService {
+public class ItemServiceImpl implements ItemService {
     private final ItemRepository itemRepository;
     private final UserRepository userRepository;
 
@@ -23,7 +23,7 @@ public class ItemServiceImpl implements  ItemService {
         this.userRepository = userRepository;
     }
 
-    private static ItemResponse toResponse(Item i) {
+    private ItemResponse toResponse(Item i) {
         return new ItemResponse(i.getId(), i.getTitle(), i.getDescription(),
                 i.getPrice(), i.getLocation(),
                 i.getStatus(), i.getAutoReportLink(),
@@ -32,7 +32,7 @@ public class ItemServiceImpl implements  ItemService {
 
     @Override
     public ItemResponse save(ItemCreateRequest req) {
-        User user = userRepository.findById(req.getSellerId()).orElseThrow(
+        User seller = userRepository.findById(req.getSellerId()).orElseThrow(
                 () -> new NotFoundException("Seller not found"));
 
         Item i = new Item();
@@ -41,7 +41,7 @@ public class ItemServiceImpl implements  ItemService {
         i.setPrice(req.getPrice());
         i.setLocation(req.getLocation());
         i.setAutoReportLink(req.getAuto_report_link());
-        i.setSeller(user);
+        i.setSeller(seller);
         return toResponse(this.itemRepository.save(i));
     }
 
@@ -53,10 +53,9 @@ public class ItemServiceImpl implements  ItemService {
 
     @Override
     public List<ItemResponse> findAll() {
-        List<ItemResponse> items = itemRepository.findAll().stream()
-                .map(ItemServiceImpl::toResponse)
+        return itemRepository.findAll().stream()
+                .map((this::toResponse))
                 .toList();
-        return items;
     }
 
     @Override
@@ -75,7 +74,7 @@ public class ItemServiceImpl implements  ItemService {
 
     @Override
     public void deleteById(Long id) {
-        if (!itemRepository.existsById(id)) throw new NotFoundException("This item not existed");
+        if (!itemRepository.existsById(id)) throw new NotFoundException("You try to delete not existed item");
         itemRepository.deleteById(id);
     }
 }

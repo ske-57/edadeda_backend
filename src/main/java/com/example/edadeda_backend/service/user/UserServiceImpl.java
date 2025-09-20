@@ -38,7 +38,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserResponse> findAll() {
-        return userRepository.findAll().stream()
+        return userRepository.findAll()
+                .stream()
                 .map((UserServiceImpl::toResponse))
                 .toList();
     }
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void delete(Long id) {
-        if (!userRepository.existsById(id)) throw new NotFoundException("This user not existed");
+        if (!userRepository.existsById(id)) throw new NotFoundException("You try to delete not existed user");
         userRepository.deleteById(id);
     }
 }
