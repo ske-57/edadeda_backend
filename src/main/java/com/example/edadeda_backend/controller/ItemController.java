@@ -21,27 +21,27 @@ public class ItemController {
 
     @GetMapping
     public List<ItemResponse> getItems() {
-        return itemService.findAll();
+        return itemService.getAllItems();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ItemResponse create(@RequestBody ItemCreateRequest req) {
-        return itemService.save(req);
+    public ItemResponse createItem(@RequestBody ItemCreateRequest req) {
+        return itemService.createItem(req);
     }
 
     @GetMapping("/{id}")
     public ItemResponse getItem(@PathVariable Long id) {
-        return itemService.get(id);
+        return itemService.getItem(id);
     }
 
     @PutMapping("/{id}")
     public ItemResponse updateItem(@PathVariable Long id, @RequestBody ItemUpdateRequest req) {
-        return itemService.update(id, req);
+        return itemService.updateItem(id, req);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteItem(@PathVariable Long id) {
         this.itemService.deleteById(id);
     }

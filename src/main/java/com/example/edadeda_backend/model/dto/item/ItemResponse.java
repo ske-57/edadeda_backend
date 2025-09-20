@@ -3,7 +3,6 @@ package com.example.edadeda_backend.model.dto.item;
 import com.example.edadeda_backend.model.entity.EnumItemStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
 public class ItemResponse {
@@ -22,7 +21,6 @@ public class ItemResponse {
 
     private String auto_report_link;
 
-    @Setter
     @JsonProperty(value = "seller_id")
     private Long sellerId;
 

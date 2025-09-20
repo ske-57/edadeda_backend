@@ -12,7 +12,7 @@ import java.util.Date;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter
     private Long id;
 
     @OneToOne()
@@ -31,8 +31,4 @@ public class Cart {
     @Column(name = "created_at")
     @Getter
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    public Long getId() {
-        return id;
-    }
 }

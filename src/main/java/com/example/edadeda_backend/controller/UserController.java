@@ -22,28 +22,28 @@ public class UserController {
 
     @GetMapping()
     public List<UserResponse> getUsers() {
-        return this.userService.findAll();
+        return this.userService.getAllUsers();
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse addUser(@RequestBody UserCreateRequest user) {
-        return this.userService.create(user);
+    public UserResponse createUser(@RequestBody UserCreateRequest user) {
+        return this.userService.createUser(user);
     }
 
     @GetMapping(path = "/{id}")
     public UserResponse getUserById(@PathVariable Long id) {
-        return this.userService.get(id);
+        return this.userService.getUser(id);
     }
 
     @PutMapping(path = "/{id}")
     public UserResponse updateUser(@PathVariable Long id, @RequestBody UserUpdateRequest user) {
-        return this.userService.update(id, user);
+        return this.userService.updateUser(id, user);
     }
 
     @DeleteMapping(path = "/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable Long id) {
-        this.userService.delete(id);
+        this.userService.deleteById(id);
     }
 }

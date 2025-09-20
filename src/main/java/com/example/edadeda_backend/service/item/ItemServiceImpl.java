@@ -31,7 +31,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemResponse save(ItemCreateRequest req) {
+    public ItemResponse createItem(ItemCreateRequest req) {
         User seller = userRepository.findById(req.getSellerId()).orElseThrow(
                 () -> new NotFoundException("Seller not found"));
 
@@ -46,20 +46,20 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemResponse get(Long id) {
+    public ItemResponse getItem(Long id) {
         Item i = itemRepository.findById(id).orElseThrow(() -> new NotFoundException("Item not found"));
         return toResponse(i);
     }
 
     @Override
-    public List<ItemResponse> findAll() {
+    public List<ItemResponse> getAllItems() {
         return itemRepository.findAll().stream()
                 .map((this::toResponse))
                 .toList();
     }
 
     @Override
-    public ItemResponse update(Long id, ItemUpdateRequest req) {
+    public ItemResponse updateItem(Long id, ItemUpdateRequest req) {
         Item i = itemRepository.findById(id).orElseThrow(() -> new NotFoundException("Item not found"));
 
         if (req.getTitle() != null)        i.setTitle(req.getTitle());

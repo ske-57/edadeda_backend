@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponse save(OrderCreateRequest req) {
+    public OrderResponse createOrder(OrderCreateRequest req) {
         User buyer = userRepository.findById(req.getBuyerId())
                 .orElseThrow(() -> new NotFoundException("User for order not found"));
 
@@ -52,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderResponse> findAll() {
+    public List<OrderResponse> getAllOrders() {
         List<OrderResponse> orders = orderRepository.findAll()
                 .stream()
                 .map(this::toResponse)

@@ -8,9 +8,9 @@ import com.example.edadeda_backend.model.dto.user.UserUpdateRequest;
 import java.util.List;
 
 public interface UserService {
-    UserResponse create(UserCreateRequest req);
-    UserResponse get (Long id);
-    List<UserResponse> findAll();
-    UserResponse update(Long id, UserUpdateRequest req);
-    void delete(Long id);
+    UserResponse createUser(UserCreateRequest req);
+    UserResponse getUser(Long id);
+    List<UserResponse> getAllUsers();
+    UserResponse updateUser(Long id, UserUpdateRequest req);
+    void deleteById(Long id);
 }

@@ -20,7 +20,7 @@ public class OrderController {
 
     @GetMapping
     public List<OrderResponse> getOrders() {
-        return orderService.findAll();
+        return orderService.getAllOrders();
     }
 
     @GetMapping("/{id}")
@@ -31,11 +31,11 @@ public class OrderController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderResponse createOrder(@RequestBody OrderCreateRequest req) {
-        return orderService.save(req);
+        return orderService.createOrder(req);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public void deleteOrder(@PathVariable Long id) {
         orderService.deleteById(id);
     }

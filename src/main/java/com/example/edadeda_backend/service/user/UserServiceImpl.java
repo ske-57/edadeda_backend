@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse create(UserCreateRequest req) {
+    public UserResponse createUser(UserCreateRequest req) {
         User u = new User();
         u.setId((long) req.getName().hashCode());
         u.setName(req.getName());
@@ -32,12 +32,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse get(Long id) {
+    public UserResponse getUser(Long id) {
         return toResponse(userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found")));
     }
 
     @Override
-    public List<UserResponse> findAll() {
+    public List<UserResponse> getAllUsers() {
         return userRepository.findAll()
                 .stream()
                 .map((UserServiceImpl::toResponse))
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse update(Long id, UserUpdateRequest req) {
+    public UserResponse updateUser(Long id, UserUpdateRequest req) {
         User u = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
 
         if (req.getName() != null) u.setName(req.getName());
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
         if (!userRepository.existsById(id)) throw new NotFoundException("You try to delete not existed user");
         userRepository.deleteById(id);
     }

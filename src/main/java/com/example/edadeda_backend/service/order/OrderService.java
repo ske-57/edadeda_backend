@@ -6,8 +6,8 @@ import com.example.edadeda_backend.model.dto.order.OrderResponse;
 import java.util.List;
 
 public interface OrderService {
-    OrderResponse save(OrderCreateRequest req);
+    OrderResponse createOrder(OrderCreateRequest req);
     OrderResponse findById(Long id);
-    List<OrderResponse> findAll();
+    List<OrderResponse> getAllOrders();
     void deleteById(Long id);
 }
