@@ -25,15 +25,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse createUser(UserCreateRequest req) {
         User u = new User();
-        u.setId((long) req.getName().hashCode());
         u.setName(req.getName());
-        u.setIsSeller(req.getIsSeller());
         return toResponse(userRepository.save(u));
     }
 
     @Override
     public UserResponse getUser(Long id) {
-        return toResponse(userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found")));
+        return toResponse(userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Get:\n User not found")));
     }
 
     @Override
@@ -46,7 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse updateUser(Long id, UserUpdateRequest req) {
-        User u = userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        User u = userRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Update:\n User with id " + id + " not found"));
 
         if (req.getName() != null) u.setName(req.getName());
         if (req.getIsSeller() != null ) u.setIsSeller(req.getIsSeller());
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Long id) {
-        if (!userRepository.existsById(id)) throw new NotFoundException("You try to delete not existed user");
+        if (!userRepository.existsById(id)) throw new NotFoundException("Delete:\n User with id " + id + " not found");
         userRepository.deleteById(id);
     }
 }

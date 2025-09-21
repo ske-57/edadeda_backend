@@ -2,6 +2,7 @@ package com.example.edadeda_backend.model.dto.user;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.Getter;
 
 @Getter
@@ -9,15 +10,11 @@ public class UserCreateRequest {
 
     private String name;
 
-    @JsonProperty(value = "is_seller")
-    private Boolean isSeller = false;
-
     public UserCreateRequest() {
     }
 
-    public UserCreateRequest(String name, Boolean isSeller) {
+    public UserCreateRequest(String name) {
         this.name = name;
-        this.isSeller = isSeller;
     }
 
 }

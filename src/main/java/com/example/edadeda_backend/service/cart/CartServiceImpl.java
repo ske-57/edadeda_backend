@@ -29,8 +29,7 @@ public class CartServiceImpl implements CartService {
     }
 
     private CartResponse toResponse(Cart cart) {
-        return new CartResponse(cart.getId(),
-                cart.getUser().getId(),
+        return new CartResponse(cart.getUser().getId(),
                 cart.getItem().getId(),
                 cart.getCreatedAt());
     }
@@ -44,7 +43,7 @@ public class CartServiceImpl implements CartService {
                 .orElseThrow(() -> new NotFoundException("Item for creating cart not found"));
 
         Cart cartToSave = new Cart();
-        cartToSave.setId(user.getId());
+        cartToSave.setUser(user);
         cartToSave.setItem(item);
         cartToSave.setUser(user);
         return toResponse(cartRepository.save(cartToSave));

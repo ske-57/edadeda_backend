@@ -15,8 +15,6 @@ public class ItemCreateRequest {
 
     private String location;
 
-    private String status = EnumItemStatus.AVAILABLE.toString();
-
     private String auto_report_link;
 
     @JsonProperty(value = "seller_id")

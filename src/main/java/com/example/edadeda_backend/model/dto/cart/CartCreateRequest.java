@@ -9,17 +9,13 @@ public class CartCreateRequest {
 //    private Long id;
 
     @JsonProperty(value = "user_id")
-    private final Long userId;
+    private Long userId;
 
     @JsonProperty(value = "item_id")
     private Long itemId;
 
-//    private Integer quantity;
-
-//    private final LocalDateTime createdAt = LocalDateTime.now();
-
-//    public CartCreateResponse() {
-//    }
+    public CartCreateRequest() {
+    }
 
     public CartCreateRequest(Long userId, Long itemId) {
         this.userId = userId;

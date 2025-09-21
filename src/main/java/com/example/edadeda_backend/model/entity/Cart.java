@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Table(name = "cart")
@@ -13,6 +12,7 @@ public class Cart {
 
     @Id
     @Getter @Setter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne()
@@ -24,9 +24,6 @@ public class Cart {
     @JoinColumn(name = "item_id", nullable = false)
     @Getter @Setter
     private Item item;
-
-    @Getter @Setter
-    private Integer quantity = 1;
 
     @Column(name = "created_at")
     @Getter
