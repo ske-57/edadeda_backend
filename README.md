@@ -28,7 +28,7 @@ Before starting this app on local PC must be installed:
 1. Maven
 2. Java 22
 
-#### Next step is running this commands into terminal:
+#### Next step is run this commands:
 ```bash
 mvn clean package
 ```
@@ -36,7 +36,7 @@ mvn clean package
 ```bash
 java -jar target/edadeda_backend-0.0.3-beta.jar
 ```
-#### In console u will see the port `(8089)` and confirmation of starting app:
+#### In console u will see the port and confirmation of starting app:
 <h6>Started EdadedaBackendApplicationTests in `x.xxx` seconds.</h6>
 
 
