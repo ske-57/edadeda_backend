@@ -24,8 +24,4 @@ public class Cart {
     @JoinColumn(name = "item_id", nullable = false)
     @Getter @Setter
     private Item item;
-
-    @Column(name = "created_at")
-    @Getter
-    private LocalDateTime createdAt = LocalDateTime.now();
 }

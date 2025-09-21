@@ -13,17 +13,15 @@ public class CartResponse {
     @JsonProperty(value = "item_id")
     private Long itemId;
 
-    private final Integer quantity = 1;
-
-    @JsonProperty(value = "created_at")
-    private LocalDateTime createdAt;
+    @JsonProperty(value = "user_id")
+    private Long userId;
 
     public CartResponse() {
     }
 
-    public CartResponse(Long id, Long itemId, LocalDateTime created_at) {
+    public CartResponse(Long id, Long itemId, Long userId) {
         this.id = id;
         this.itemId = itemId;
-        this.createdAt = created_at;
+        this.userId = userId;
     }
 }

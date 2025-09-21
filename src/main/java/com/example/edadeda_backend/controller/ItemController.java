@@ -49,7 +49,7 @@ public class ItemController {
 
     @Operation(summary = "Delete item by id")
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteItem(@PathVariable Long id) {
         this.itemService.deleteById(id);
     }

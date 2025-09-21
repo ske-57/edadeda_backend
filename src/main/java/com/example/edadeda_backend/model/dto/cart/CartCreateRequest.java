@@ -6,8 +6,6 @@ import lombok.Getter;
 @Getter
 public class CartCreateRequest {
 
-//    private Long id;
-
     @JsonProperty(value = "user_id")
     private Long userId;
 

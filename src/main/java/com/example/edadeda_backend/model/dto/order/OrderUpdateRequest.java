@@ -10,18 +10,13 @@ public class OrderUpdateRequest {
     private Long itemId;
 
     @Getter
-    @JsonProperty(value = "buyer_id")
-    private Long buyerId;
-
-    @Getter
     private Long price;
 
     public OrderUpdateRequest() {
     }
 
-    public OrderUpdateRequest(Long itemId, Long buyerId, Long price) {
+    public OrderUpdateRequest(Long itemId, Long price) {
         this.itemId = itemId;
-        this.buyerId = buyerId;
         this.price = price;
     }
 }

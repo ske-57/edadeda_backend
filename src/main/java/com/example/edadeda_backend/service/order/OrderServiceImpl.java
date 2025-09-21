@@ -48,16 +48,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponse findById(Long id) {
-        return toResponse(orderRepository.findById(id).orElseThrow(() -> new NotFoundException("Order not found")));
+        return toResponse(orderRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Order not found")));
     }
 
     @Override
     public List<OrderResponse> getAllOrders() {
-        List<OrderResponse> orders = orderRepository.findAll()
+        return orderRepository.findAll()
                 .stream()
                 .map(this::toResponse)
                 .toList();
-        return orders;
     }
 
     @Override

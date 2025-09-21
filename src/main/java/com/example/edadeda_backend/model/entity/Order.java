@@ -6,6 +6,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "orders")
+@Getter
 public class Order {
 
     @Id
@@ -13,24 +14,16 @@ public class Order {
     private Long id;
 
     @Setter
-    @Getter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     @Setter
-    @Getter
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "buyer_id", nullable = false)
     private User buyer;
 
-    @Getter
     @Setter
     @Column(nullable = false)
     private Long price;
-
-
-    public Long getId() {
-        return id;
-    }
 }
