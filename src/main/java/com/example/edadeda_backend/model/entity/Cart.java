@@ -19,9 +19,4 @@ public class Cart {
     @JoinColumn(name = "user_id", nullable = false)
     @Getter @Setter
     private User user;
-
-    @ManyToOne()
-    @JoinColumn(name = "item_id", nullable = false)
-    @Getter @Setter
-    private Item item;
 }

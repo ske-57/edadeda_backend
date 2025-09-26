@@ -2,7 +2,6 @@ package com.example.edadeda_backend.controller;
 
 import com.example.edadeda_backend.model.dto.cart.CartCreateRequest;
 import com.example.edadeda_backend.model.dto.cart.CartResponse;
-import com.example.edadeda_backend.model.dto.cart.CartUpdateRequest;
 import com.example.edadeda_backend.service.cart.CartService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,11 +19,11 @@ public class CartController {
         this.cartService = cartService;
     }
 
-    @Operation(summary = "Get cart by id")
-    @GetMapping(value = "/{id}")
-    public CartResponse getCart(@PathVariable Long id){
-        return cartService.findById(id);
-    }
+//    @Operation(summary = "Get cart by id")
+//    @GetMapping(value = "/{id}")
+//    public CartResponse getCart(@PathVariable Long id){
+//        return cartService.findById(id);
+//    }
 
     @Operation(summary = "Create new cart")
     @PostMapping
@@ -33,11 +32,18 @@ public class CartController {
         return cartService.createCart(req);
     }
 
-    @Operation(summary = "Partially update cart (only item right now)")
-    @PatchMapping(value = "/{id}")
+//    @Operation(summary = "Partially update cart (only item right now)")
+//    @PatchMapping(value = "/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public CartResponse updateCart(@PathVariable Long id, @RequestBody CartUpdateRequest req) {
+//        return cartService.updateCart(id, req);
+//    }
+
+    @Operation(summary = "Get cart by user id")
+    @GetMapping(value = "/{user_id}")
     @ResponseStatus(HttpStatus.OK)
-    public CartResponse updateCart(@PathVariable Long id, @RequestBody CartUpdateRequest req) {
-        return cartService.updateCart(id, req);
+    public CartResponse getCartByUserId(@PathVariable(name = "user_id") Long userId) {
+        return cartService.getCartByUserId(userId);
     }
 
     @Operation(summary = "Delete cart by id")

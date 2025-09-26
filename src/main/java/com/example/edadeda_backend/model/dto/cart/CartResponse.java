@@ -10,18 +10,14 @@ public class CartResponse {
 
     private Long id;
 
-    @JsonProperty(value = "item_id")
-    private Long itemId;
-
     @JsonProperty(value = "user_id")
     private Long userId;
 
     public CartResponse() {
     }
 
-    public CartResponse(Long id, Long itemId, Long userId) {
+    public CartResponse(Long id, Long userId) {
         this.id = id;
-        this.itemId = itemId;
         this.userId = userId;
     }
 }

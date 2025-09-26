@@ -36,6 +36,16 @@ DROP TABLE IF EXISTS cart;
 
 CREATE TABLE IF NOT EXISTS cart (
   id BIGSERIAL PRIMARY KEY,
-  user_id BIGINT NOT NULL REFERENCES users (id),
-  item_id BIGINT NOT NULL REFERENCES items (id)
+  user_id BIGINT NOT NULL REFERENCES users (id)
+)
+
+DROP TABLE IF EXISTS cart_items;
+
+CREATE TABLE IF NOT EXISTS cart_items (
+  id BIGSERIAL PRIMARY KEY,
+  cart_id BIGINT NOT NULL REFERENCES cart (id),
+  item_id BIGINT NOT NULL REFERENCES items (id),
+  qty INT NOT NULL DEFAULT 1,
+  total_price BIGINT NOT NULL,
+  UNIQUE (cart_id, item_id)
 )
