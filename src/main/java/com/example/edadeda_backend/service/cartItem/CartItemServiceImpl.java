@@ -26,16 +26,6 @@ public class CartItemServiceImpl implements CartItemService {
         this.itemRepository = itemRepository;
     }
 
-    private CartItemResponse toResponse(CartItem cartItem) {
-        CartItemResponse cartItemResponse = new CartItemResponse();
-        cartItemResponse.setId(cartItem.getId());
-        cartItemResponse.setCartId(cartItem.getCart().getId());
-        cartItemResponse.setItemId(cartItem.getItem().getId());
-        cartItemResponse.setQty(cartItem.getQty());
-        cartItemResponse.setTotalPrice(cartItem.getTotalPrice());
-        return cartItemResponse;
-    }
-
     @Override
     public CartItemResponse createCartItem(CartItemCreateRequest req) {
         Cart cart = cartRepository.findById(req.getCartId())
@@ -58,5 +48,15 @@ public class CartItemServiceImpl implements CartItemService {
                 .stream()
                 .map(this::toResponse)
                 .toList();
+    }
+
+    private CartItemResponse toResponse(CartItem cartItem) {
+        CartItemResponse cartItemResponse = new CartItemResponse();
+        cartItemResponse.setId(cartItem.getId());
+        cartItemResponse.setCartId(cartItem.getCart().getId());
+        cartItemResponse.setItemId(cartItem.getItem().getId());
+        cartItemResponse.setQty(cartItem.getQty());
+        cartItemResponse.setTotalPrice(cartItem.getTotalPrice());
+        return cartItemResponse;
     }
 }
