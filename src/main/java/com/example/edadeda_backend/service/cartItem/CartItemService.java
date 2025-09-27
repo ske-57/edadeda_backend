@@ -11,5 +11,4 @@ import java.util.List;
 public interface CartItemService {
     CartItemResponse createCartItem(CartItemCreateRequest req);
     List<CartItemResponse> getAllByCartId(Long cartId);
-    void deleteByCartItemId(Long cartId, Long cartItemId);
 }

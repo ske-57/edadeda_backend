@@ -59,9 +59,4 @@ public class CartItemServiceImpl implements CartItemService {
                 .map(this::toResponse)
                 .toList();
     }
-
-    @Override
-    public void deleteByCartItemId(Long cartId, Long cartItemId) {
-        cartItemRepository.deleteCartItem(cartId, cartItemId);
-    }
 }
