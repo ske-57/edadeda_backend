@@ -2,6 +2,8 @@ package com.example.edadeda_backend.controller;
 
 import com.example.edadeda_backend.model.dto.cart.CartCreateRequest;
 import com.example.edadeda_backend.model.dto.cart.CartResponse;
+import com.example.edadeda_backend.model.dto.cartItem.CartItemCreateRequest;
+import com.example.edadeda_backend.model.dto.cartItem.CartItemResponse;
 import com.example.edadeda_backend.model.dto.item.ItemResponse;
 import com.example.edadeda_backend.service.cart.CartService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,6 +36,13 @@ public class CartController {
     @ResponseStatus(HttpStatus.OK)
     public List<ItemResponse> getItemsByCartId(@PathVariable(name = "cart_id") Long cartId) {
         return cartService.getAllItemsByCartId(cartId);
+    }
+
+    @Operation(summary = "Create new cart item")
+    @PostMapping("/{cart_id}/items")
+    @ResponseStatus(HttpStatus.OK)
+    public CartItemResponse createCartItem(@PathVariable(name = "cart_id") Long cartId, @RequestBody CartItemCreateRequest req) {
+        return cartService.createCartItem(cartId, req);
     }
 
     @Operation(summary = "Get cart by user id")

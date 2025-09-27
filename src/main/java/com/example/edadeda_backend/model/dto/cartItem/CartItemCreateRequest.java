@@ -6,9 +6,6 @@ import lombok.Getter;
 @Getter
 public class CartItemCreateRequest {
 
-    @JsonProperty(value = "cart_id")
-    private Long cartId;
-
     @JsonProperty(value = "item_id")
     private Long itemId;
 
@@ -20,9 +17,8 @@ public class CartItemCreateRequest {
     public CartItemCreateRequest() {
     }
 
-    public CartItemCreateRequest(Long cartId, Long itemId,
+    public CartItemCreateRequest(Long itemId,
                                  Integer qty, Long totalPrice) {
-        this.cartId = cartId;
         this.itemId = itemId;
         this.qty = qty;
         this.totalPrice = totalPrice;
