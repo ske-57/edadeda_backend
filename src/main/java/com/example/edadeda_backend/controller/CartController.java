@@ -2,11 +2,14 @@ package com.example.edadeda_backend.controller;
 
 import com.example.edadeda_backend.model.dto.cart.CartCreateRequest;
 import com.example.edadeda_backend.model.dto.cart.CartResponse;
+import com.example.edadeda_backend.model.dto.item.ItemResponse;
 import com.example.edadeda_backend.service.cart.CartService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Tag(name = "Cart")
@@ -30,6 +33,13 @@ public class CartController {
     @ResponseStatus(HttpStatus.CREATED)
     public CartResponse createCart(@RequestBody CartCreateRequest req) {
         return cartService.createCart(req);
+    }
+
+    @Operation(summary = "Get items by cart id")
+    @GetMapping("/{cart_id}/items")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ItemResponse> getItemsByCartId(@PathVariable(name = "cart_id") Long cartId) {
+        return cartService.getAllItemsByCartId(cartId);
     }
 
 //    @Operation(summary = "Partially update cart (only item right now)")

@@ -3,6 +3,7 @@ package com.example.edadeda_backend.service.cart;
 import com.example.edadeda_backend.exception.NotFoundException;
 import com.example.edadeda_backend.model.dto.cart.CartCreateRequest;
 import com.example.edadeda_backend.model.dto.cart.CartResponse;
+import com.example.edadeda_backend.model.dto.item.ItemResponse;
 import com.example.edadeda_backend.model.entity.Cart;
 import com.example.edadeda_backend.model.entity.Item;
 import com.example.edadeda_backend.model.entity.User;
@@ -18,15 +19,24 @@ public class CartServiceImpl implements CartService {
 
     private final CartRepository cartRepository;
     private final UserRepository userRepository;
+    private final ItemRepository itemRepository;
 
-    public CartServiceImpl(CartRepository cartRepository, UserRepository userRepository) {
+    public CartServiceImpl(CartRepository cartRepository, UserRepository userRepository, ItemRepository itemRepository) {
         this.cartRepository = cartRepository;
         this.userRepository = userRepository;
+        this.itemRepository = itemRepository;
     }
 
-    private CartResponse toResponse(Cart cart) {
+    private CartResponse cartToResponse(Cart cart) {
         return new CartResponse(cart.getId(),
                 cart.getUser().getId());
+    }
+
+    private ItemResponse itemToResponse(Item i) {
+        return new ItemResponse(i.getId(), i.getTitle(), i.getDescription(),
+                i.getPrice(), i.getLocation(),
+                i.getStatus(), i.getAutoReportLink(),
+                i.getSeller().getId());
     }
 
     @Override
@@ -36,7 +46,7 @@ public class CartServiceImpl implements CartService {
 
         Cart cartToSave = new Cart();
         cartToSave.setUser(user);
-        return toResponse(cartRepository.save(cartToSave));
+        return cartToResponse(cartRepository.save(cartToSave));
     }
 
 //    @Override
@@ -48,7 +58,7 @@ public class CartServiceImpl implements CartService {
     public List<CartResponse> getAllCarts() {
         return cartRepository.findAll()
                 .stream()
-                .map(this::toResponse)
+                .map(this::cartToResponse)
                 .toList();
     }
 
@@ -57,7 +67,15 @@ public class CartServiceImpl implements CartService {
         User user =  userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException("User not existed"));
 
-        return toResponse(cartRepository.getCartByUserId(userId));
+        return cartToResponse(cartRepository.getCartByUserId(userId));
+    }
+
+    @Override
+    public List<ItemResponse> getAllItemsByCartId(Long cartId) {
+        return itemRepository.getAllItemsByCartId(cartId)
+                .stream()
+                .map(this::itemToResponse)
+                .toList();
     }
 
 //    @Override
