@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
-    public List<CartItem> getAllByCartId(Long cartId);
+    List<CartItem> getAllItemsByCartId(Long cartId);
     @Query(
             value = "DELETE FROM cart_items ci WHERE ci.cart_id = ?1 AND ci.item_id = ?2",
             nativeQuery = true
     )
-    public void deleteCartItem(Long cartId, Long cartItemId);
+    void deleteCartItemByCartId(Long cartId, Long cartItemId);
 }

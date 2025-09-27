@@ -54,7 +54,7 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public List<CartItemResponse> getAllByCartId(Long cartId) {
-        return cartItemRepository.getAllByCartId(cartId)
+        return cartItemRepository.getAllItemsByCartId(cartId)
                 .stream()
                 .map(this::toResponse)
                 .toList();

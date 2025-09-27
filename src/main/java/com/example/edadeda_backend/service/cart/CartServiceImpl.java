@@ -49,11 +49,6 @@ public class CartServiceImpl implements CartService {
         return cartToResponse(cartRepository.save(cartToSave));
     }
 
-//    @Override
-//    public CartResponse findById(Long id) {
-//        return toResponse(cartRepository.findById(id).orElseThrow(() -> new NotFoundException("Cart not found")));
-//    }
-
     @Override
     public List<CartResponse> getAllCarts() {
         return cartRepository.findAll()
@@ -77,20 +72,6 @@ public class CartServiceImpl implements CartService {
                 .map(this::itemToResponse)
                 .toList();
     }
-
-//    @Override
-//    public CartResponse updateCart(Long id, CartUpdateRequest req) {
-//        Cart cartToUpdate = cartRepository.findById(id)
-//                .orElseThrow(() -> new NotFoundException("Cart for update not found"));
-//        Item item = itemRepository.findById(req.getItemId())
-//                .orElseThrow(() -> new NotFoundException("Item for update cart not found"));
-//
-//        if (req.getItemId() != null) {
-//            cartToUpdate.setItem(item);
-//        }
-//
-//        return toResponse(cartRepository.save(cartToUpdate));
-//    }
 
     @Override
     public void deleteCartById(Long cartId) {
