@@ -22,12 +22,6 @@ public class CartController {
         this.cartService = cartService;
     }
 
-//    @Operation(summary = "Get cart by id")
-//    @GetMapping(value = "/{id}")
-//    public CartResponse getCart(@PathVariable Long id){
-//        return cartService.findById(id);
-//    }
-
     @Operation(summary = "Create new cart")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -41,13 +35,6 @@ public class CartController {
     public List<ItemResponse> getItemsByCartId(@PathVariable(name = "cart_id") Long cartId) {
         return cartService.getAllItemsByCartId(cartId);
     }
-
-//    @Operation(summary = "Partially update cart (only item right now)")
-//    @PatchMapping(value = "/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public CartResponse updateCart(@PathVariable Long id, @RequestBody CartUpdateRequest req) {
-//        return cartService.updateCart(id, req);
-//    }
 
     @Operation(summary = "Get cart by user id")
     @GetMapping(value = "/{user_id}")
