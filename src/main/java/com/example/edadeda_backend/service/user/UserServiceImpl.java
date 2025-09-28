@@ -30,8 +30,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUser(Long id) {
-        return toResponse(userRepository.findById(id)
+    public UserResponse getUserByTgId(Long id) {
+        return toResponse(userRepository.findByTgId(id)
                 .orElseThrow(() -> new NotFoundException("Get:\n User not found")));
     }
 

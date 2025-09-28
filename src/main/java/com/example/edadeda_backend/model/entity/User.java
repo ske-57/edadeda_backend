@@ -12,7 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "tg_id", nullable = false, unique = true)
     @Getter @Setter
     private Long tgId;

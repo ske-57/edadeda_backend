@@ -34,10 +34,10 @@ public class UserController {
         return this.userService.createUser(user);
     }
 
-    @Operation(summary = "Get user by id")
-    @GetMapping(path = "/{id}")
-    public UserResponse getUserById(@PathVariable Long id) {
-        return this.userService.getUser(id);
+    @Operation(summary = "Get user id by telegram id")
+    @GetMapping(path = "/{tgId}")
+    public Long getUserById(@PathVariable Long tgId) {
+        return this.userService.getUserByTgId(tgId).getId();
     }
 
     @Operation(summary = "Partially update user")
