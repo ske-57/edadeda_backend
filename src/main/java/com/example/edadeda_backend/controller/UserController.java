@@ -1,5 +1,6 @@
 package com.example.edadeda_backend.controller;
 
+import com.example.edadeda_backend.model.dto.InitDataRequest;
 import com.example.edadeda_backend.model.dto.user.UserCreateRequest;
 import com.example.edadeda_backend.model.dto.user.UserResponse;
 import com.example.edadeda_backend.model.dto.user.UserUpdateRequest;
@@ -30,8 +31,8 @@ public class UserController {
     @Operation(summary = "Create new user")
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse createUser(@RequestBody UserCreateRequest user) {
-        return this.userService.createUser(user);
+    public UserResponse createUser(@RequestBody InitDataRequest telegramInitData) {
+        return this.userService.createUser(telegramInitData);
     }
 
     @Operation(summary = "Get user id by telegram id")
