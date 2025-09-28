@@ -1,5 +1,6 @@
 package com.example.edadeda_backend.service.user;
 
+import com.example.edadeda_backend.exception.AlreadyExistingException;
 import com.example.edadeda_backend.exception.NotFoundException;
 import com.example.edadeda_backend.model.dto.user.UserCreateRequest;
 import com.example.edadeda_backend.model.dto.user.UserResponse;
@@ -24,13 +25,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse createUser(UserCreateRequest req) {
-        if (!userRepository.existsById(req.getTgId())) {
+        if (userRepository.findByTgId(req.getTgId()).isEmpty()) {
             User u = new User();
             u.setTgId(req.getTgId());
             u.setName(req.getName());
             return toResponse(userRepository.save(u));
         } else {
-            return getUserByTgId(req.getTgId());
+            throw new AlreadyExistingException("User with Telegram ID " + req.getTgId() + " already exists");
         }
     }
 
