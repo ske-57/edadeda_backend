@@ -8,6 +8,9 @@ public class UserResponse {
 
     private Long id;
 
+    @JsonProperty(value = "tg_id")
+    private Long tgId;
+
     private String name;
 
     @JsonProperty(value = "is_seller")

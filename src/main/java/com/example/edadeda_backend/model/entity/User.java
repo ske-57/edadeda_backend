@@ -12,10 +12,13 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "tg_id", nullable = false, unique = true)
+    @Getter @Setter
+    private Long tgId;
 
-    @Setter
-    @Getter
     @Column(nullable = false, length = 64)
+    @Getter @Setter
     private String name;
 
     @Column(name = "is_seller")
