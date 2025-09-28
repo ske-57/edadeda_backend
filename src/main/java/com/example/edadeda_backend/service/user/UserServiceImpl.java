@@ -19,14 +19,19 @@ public class UserServiceImpl implements UserService {
     }
 
     private static UserResponse toResponse(User u) {
-        return new UserResponse(u.getId(), u.getName(), u.getIsSeller());
+        return new UserResponse(u.getId(), u.getTgId(), u.getName(), u.getIsSeller());
     }
 
     @Override
     public UserResponse createUser(UserCreateRequest req) {
-        User u = new User();
-        u.setName(req.getName());
-        return toResponse(userRepository.save(u));
+        if (!userRepository.existsById(req.getTgId())) {
+            User u = new User();
+            u.setTgId(req.getTgId());
+            u.setName(req.getName());
+            return toResponse(userRepository.save(u));
+        } else {
+            return getUserByTgId(req.getTgId());
+        }
     }
 
     @Override

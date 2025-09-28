@@ -19,8 +19,9 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String name, Boolean isSeller) {
+    public UserResponse(Long id, Long tgId, String name, Boolean isSeller) {
         this.id = id;
+        this.tgId = tgId;
         this.name = name;
         this.isSeller = isSeller;
     }
