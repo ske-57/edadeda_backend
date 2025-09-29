@@ -11,18 +11,18 @@ public class OrderResponse {
     @JsonProperty(value = "item_id")
     private Long itemId;
 
-    @JsonProperty(value = "buyer_id")
-    private Long buyerId;
+    @JsonProperty(value = "user_id")
+    private Long userId;
 
     private Long price;
 
     public OrderResponse() {
     }
 
-    public OrderResponse(long id, long itemId, long buyerId, long price) {
+    public OrderResponse(long id, long itemId, long userId, long price) {
         this.id = id;
         this.itemId = itemId;
-        this.buyerId = buyerId;
+        this.userId = userId;
         this.price = price;
     }
 }

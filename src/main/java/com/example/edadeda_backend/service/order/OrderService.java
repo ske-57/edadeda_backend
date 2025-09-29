@@ -9,5 +9,6 @@ public interface OrderService {
     OrderResponse createOrder(OrderCreateRequest req);
     OrderResponse findById(Long id);
     List<OrderResponse> getAllOrders();
+    List<OrderResponse> getOrdersByUserId(Long userId);
     void deleteById(Long id);
 }

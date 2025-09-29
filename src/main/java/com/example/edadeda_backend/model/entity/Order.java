@@ -20,8 +20,8 @@ public class Order {
 
     @Setter
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "buyer_id", nullable = false)
-    private User buyer;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Setter
     @Column(nullable = false)

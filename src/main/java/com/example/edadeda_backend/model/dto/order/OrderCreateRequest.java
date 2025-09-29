@@ -10,8 +10,8 @@ public class OrderCreateRequest {
     private Long itemId;
 
     @Getter
-    @JsonProperty(value = "buyer_id")
-    private Long buyerId;
+    @JsonProperty(value = "user_id")
+    private Long userId;
 
     @Getter
     private Long price;
@@ -19,9 +19,9 @@ public class OrderCreateRequest {
     public OrderCreateRequest() {
     }
 
-    public OrderCreateRequest(Long itemId, Long buyerId, Long price) {
+    public OrderCreateRequest(Long itemId, Long userId, Long price) {
         this.itemId = itemId;
-        this.buyerId = buyerId;
+        this.userId = userId;
         this.price = price;
     }
 }

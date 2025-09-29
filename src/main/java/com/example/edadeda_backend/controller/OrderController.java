@@ -27,10 +27,10 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @Operation(summary = "Get order by id")
-    @GetMapping("/{id}")
-    public OrderResponse getOrder(@PathVariable Long id) {
-        return orderService.findById(id);
+    @Operation(summary = "Get orders list by user id")
+    @GetMapping("/{user_id}")
+    public List<OrderResponse> getOrder(@PathVariable(value = "user_id") Long userId) {
+        return orderService.getOrdersByUserId(userId);
     }
 
     @Operation(summary = "Create new order")

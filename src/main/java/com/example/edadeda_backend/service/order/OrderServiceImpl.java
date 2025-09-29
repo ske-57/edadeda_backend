@@ -28,12 +28,12 @@ public class OrderServiceImpl implements OrderService {
 
     private OrderResponse toResponse(Order o) {
         return new OrderResponse(o.getId(), o.getItem().getId(),
-                o.getBuyer().getId(), o.getPrice());
+                o.getUser().getId(), o.getPrice());
     }
 
     @Override
     public OrderResponse createOrder(OrderCreateRequest req) {
-        User buyer = userRepository.findById(req.getBuyerId())
+        User user = userRepository.findById(req.getUserId())
                 .orElseThrow(() -> new NotFoundException("User for order not found"));
 
         Item item = itemRepository.findById(req.getItemId())
@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
 
         Order orderToCreate = new Order();
         orderToCreate.setItem(item);
-        orderToCreate.setBuyer(buyer);
+        orderToCreate.setUser(user);
         orderToCreate.setPrice(req.getPrice());
         return toResponse(orderRepository.save(orderToCreate));
     }
@@ -55,6 +55,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderResponse> getAllOrders() {
         return orderRepository.findAll()
+                .stream()
+                .map(this::toResponse)
+                .toList();
+    }
+
+    @Override
+    public List<OrderResponse> getOrdersByUserId(Long userId) {
+        return orderRepository.getOrdersByUserId(userId)
                 .stream()
                 .map(this::toResponse)
                 .toList();
