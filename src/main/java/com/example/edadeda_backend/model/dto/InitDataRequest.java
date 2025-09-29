@@ -1,8 +1,6 @@
 package com.example.edadeda_backend.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
 
 public class InitDataRequest {
 

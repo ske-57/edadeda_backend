@@ -31,13 +31,13 @@ public class UserServiceImpl implements UserService {
     public UserResponse createUser(InitDataRequest telegramInitDataRequest) {
         TelegramDataParser.Result userData = telegramDataParser.parse(telegramInitDataRequest.getInitData());
 
+        User u = new User();
+        u.setTgId(userData.tgId());
+        u.setName(userData.name());
         if (userRepository.findByTgId(userData.tgId()).isEmpty()) {
-            User u = new User();
-            u.setTgId(userData.tgId());
-            u.setName(userData.name());
             return toResponse(userRepository.save(u));
         } else {
-            throw new AlreadyExistingException("User with Telegram ID " + userData.tgId() + " already exists");
+            return toResponse(u);
         }
     }
 
