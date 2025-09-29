@@ -37,8 +37,8 @@ public class UserController {
 
     @Operation(summary = "Get user id by telegram id")
     @GetMapping(path = "/{tgId}")
-    public Long getUserById(@PathVariable Long tgId) {
-        return this.userService.getUserByTgId(tgId).getId();
+    public UserResponse getUserById(@PathVariable Long tgId) {
+        return this.userService.getUserByTgId(tgId);
     }
 
     @Operation(summary = "Partially update user")
