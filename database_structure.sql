@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS items;
 CREATE TABLE IF NOT EXISTS items (
   id BIGSERIAL,
   title VARCHAR(64) NOT NULL,
-  description TEXT NOT NULL,
+  description VARCHAR(512) NOT NULL,
   price BIGINT NOT NULL,
   location VARCHAR(128),
   status VARCHAR(32) DEFAULT 'AVAILABLE',
@@ -32,6 +32,15 @@ CREATE TABLE IF NOT EXISTS orders (
   price BIGINT NOT NULL,
   PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS order_items;
+
+CREATE TABLE IF NOT EXISTS order_items (
+    order_id BIGINT NOT NULL REFERENCES orders (id),
+    item_id BIGINT NOT NULL REFERENCES items (id),
+    price BIGINT,
+    status VARCHAR(32) DEFAULT 'CREATED'
+)
 
 DROP TABLE IF EXISTS cart;
 
