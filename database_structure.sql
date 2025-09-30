@@ -1,0 +1,61 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE IF NOT EXISTS users (
+  id BIGSERIAL,
+  tg_id BIGINT,
+  name VARCHAR(64) NOT NULL,
+  is_seller BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS items;
+
+CREATE TABLE IF NOT EXISTS items (
+  id BIGSERIAL,
+  title VARCHAR(64) NOT NULL,
+  description VARCHAR(512) NOT NULL,
+  price BIGINT NOT NULL,
+  location VARCHAR(128),
+  status VARCHAR(32) DEFAULT 'AVAILABLE',
+  auto_report_link VARCHAR(256),
+  seller_id BIGINT NOT NULL REFERENCES users (id),
+  image_path VARCHAR(256),
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE IF NOT EXISTS orders (
+  id BIGSERIAL,
+  item_id BIGINT NOT NULL REFERENCES items (id),
+  buyer_id BIGINT NOT NULL REFERENCES users (id),
+  price BIGINT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS order_items;
+
+CREATE TABLE IF NOT EXISTS order_items (
+    order_id BIGINT NOT NULL REFERENCES orders (id),
+    item_id BIGINT NOT NULL REFERENCES items (id),
+    price BIGINT,
+    status VARCHAR(32) DEFAULT 'CREATED'
+)
+
+DROP TABLE IF EXISTS cart;
+
+CREATE TABLE IF NOT EXISTS cart (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL REFERENCES users (id)
+)
+
+DROP TABLE IF EXISTS cart_items;
+
+CREATE TABLE IF NOT EXISTS cart_items (
+  id BIGSERIAL PRIMARY KEY,
+  cart_id BIGINT NOT NULL REFERENCES cart (id),
+  item_id BIGINT NOT NULL REFERENCES items (id),
+  qty INT NOT NULL DEFAULT 1,
+  total_price BIGINT NOT NULL,
+  UNIQUE (cart_id, item_id)
+)
